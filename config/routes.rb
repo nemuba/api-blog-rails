@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       scope :auth do
         post '/signin' => 'user_token#create'
         post '/signup' => 'users#create'
+        get '/current_user' => 'auth#current'
       end
     end
   end

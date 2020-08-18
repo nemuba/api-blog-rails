@@ -4,7 +4,8 @@ module Api
       before_action :authenticate_user
     
       def current
-        render json: {user: {id: current_user.id, email: current_user.email}}
+        @user = current_user
+        render json: @user
       end
     end
   end
