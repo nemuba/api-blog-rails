@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1 do
+      
       resources :users
+
+      scope :auth do
+        post '/signin' => 'user_token#create'
+        post '/signup' => 'users#create'
+      end
     end
   end
 
