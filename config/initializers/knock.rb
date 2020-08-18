@@ -4,7 +4,9 @@ Knock.setup do |config|
 
   config.token_signature_algorithm = 'HS256'
 
-  config.token_secret_signature_key = -> { ENV['SECRET_KEY_BASE'] }
+  config.token_secret_signature_key = -> { Rails.env.development? ? Rails.application.secrets.secret_key_base : ENV['SECRET_KEY_BASE'] }
 
   config.not_found_exception_class_name = 'ActiveRecord::RecordNotFound'
 end
+
+# 
