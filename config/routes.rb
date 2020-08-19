@@ -6,11 +6,16 @@ Rails.application.routes.draw do
       
       resources :users
 
+      resources :posts do
+        resources :comments
+      end
+
       scope :auth do
         post '/signin' => 'user_token#create'
         post '/signup' => 'users#create'
         get '/current_user' => 'auth#current'
       end
+
     end
   end
 

@@ -8,7 +8,7 @@ module Api
       def index
         @users = User.all
     
-        render json: @users
+        render json: @users, root: 'users', adapter: :json
       end
     
       # GET /users/1
