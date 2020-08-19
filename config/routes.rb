@@ -7,7 +7,13 @@ Rails.application.routes.draw do
       resources :users
 
       resources :posts do
-        resources :comments
+        resources :comments, only:[:create, :destroy]
+
+        member do
+          post '/like', to: 'likes#create'
+          delete '/dislike', to: 'likes#destroy'
+        end
+
       end
 
       scope :auth do

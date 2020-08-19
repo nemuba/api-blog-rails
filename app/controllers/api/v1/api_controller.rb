@@ -3,6 +3,8 @@ module Api
     class ApiController < ApplicationController
       include Knock::Authenticable
 
+      serialization_scope :current_user
+
       rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
       rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
