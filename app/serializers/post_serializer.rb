@@ -15,6 +15,10 @@ class PostSerializer < ActiveModel::Serializer
   def liked
     object.likes.find_by(user: scope) ? true : false
   end
+
+  def comments
+    object.comments.order('created_at DESC')
+  end
   
   
 

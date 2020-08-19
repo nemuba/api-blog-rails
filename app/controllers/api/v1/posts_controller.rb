@@ -7,14 +7,15 @@ module Api
     
       # GET /posts
       def index
-        @posts = Post.all
+        authenticate_user if current_user
+        @posts = Post.includes(:likes, :comments).order('created_at DESC')
     
-        render json: @posts, root: 'posts', adapter: :json
+        render json: @posts, root: 'posts', include:['user','likes','comments','comments.user'], adapter: :json
       end
     
       # GET /posts/1
       def show
-        render json: @post
+        render json: @post, include:['user','likes','comments','comments.user']
       end
     
       # POST /posts
