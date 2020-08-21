@@ -8,14 +8,14 @@ module Api
       # GET /posts
       def index
         authenticate_user if current_user
-        @posts = Post.includes(:likes, :comments).order('created_at DESC')
+        @posts = Post.includes(:likes, :comments, :categories).order('created_at DESC')
     
-        render json: @posts, root: 'posts', include:['user','likes','comments','comments.user'], adapter: :json
+        render json: @posts, root: 'posts', include:['user','likes','comments','comments.user','categories'], adapter: :json
       end
     
       # GET /posts/1
       def show
-        render json: @post, include:['user','likes','comments','comments.user']
+        render json: @post, include:['user','likes','comments','comments.user','categories']
       end
     
       # POST /posts
@@ -55,7 +55,7 @@ module Api
         end
         # Only allow a trusted parameter "white list" through.
         def post_params
-          params.require(:post).permit(:title, :body, :user_id)
+          params.require(:post).permit(:title, :body, :category_ids=>[])
         end
     end
   end

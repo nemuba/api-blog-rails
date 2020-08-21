@@ -3,6 +3,7 @@ class PostSerializer < ActiveModel::Serializer
   has_one :user
   has_many :comments
   has_many :likes
+  has_many :categories
 
   def created_at
     object.created_at.strftime('%d/%m/%Y')
