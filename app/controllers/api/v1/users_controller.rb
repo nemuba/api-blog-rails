@@ -30,7 +30,7 @@ module Api
       # PATCH/PUT /users/1
       def update
         if @user.update(user_params)
-          render json: @user
+          render json: @user, status: :accepted
         else
           render json: @user.errors, status: :unprocessable_entity
         end

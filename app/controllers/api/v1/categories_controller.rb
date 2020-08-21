@@ -29,7 +29,7 @@ module Api
       # PATCH/PUT /categories/1
       def update
         if @category.update(category_params)
-          render json: @category
+          render json: @category, status: :accepted
         else
           render json: @category.errors.full_messages
         end

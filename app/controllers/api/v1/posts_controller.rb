@@ -32,7 +32,7 @@ module Api
       # PATCH/PUT /posts/1
       def update
         if @post.update(post_params.merge(user_id: @user.id))
-          render json: @post
+          render json: @post, status: :accepted
         else
           render json: @post.errors.full_messages
         end

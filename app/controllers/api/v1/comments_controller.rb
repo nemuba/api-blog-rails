@@ -19,7 +19,7 @@ module Api
       # DELETE /comments/1
       def destroy
         if @comment.destroy
-          render json: @post, include:['user','likes','comments','comments.user','categories']
+          render json: @post, include:['user','likes','comments','comments.user','categories'], status: :accepted
         else
           render json: @comment.errors.full_messages
         end
