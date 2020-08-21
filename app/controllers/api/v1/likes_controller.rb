@@ -10,7 +10,7 @@ module Api
         @like = @post.likes.new(user_id: current_user.id)
     
         if @like.save
-          render json: @post, include:['user','likes','comments','comments.user'], status: :created
+          render json: @post, include:['user','likes','comments','comments.user','categories'], status: :created
         else
           render json: @like.errors, status: :unprocessable_entity
         end
@@ -20,7 +20,7 @@ module Api
       # DELETE /likes/1
       def destroy
         if @like.destroy
-          render json: @post, include:['user','likes','comments','comments.user']
+          render json: @post, include:['user','likes','comments','comments.user','categories']
         else
           render json: @likes.errors
         end

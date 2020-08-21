@@ -10,7 +10,7 @@ module Api
         @comment = @post.comments.new(comment_params.merge(user_id: current_user.id))
     
         if @comment.save
-          render json: @post, include:['user','likes','comments','comments.user'], status: :created
+          render json: @post, include:['user','likes','comments','comments.user','categories'], status: :created
         else
           render json: @comment.errors, status: :unprocessable_entity
         end
@@ -19,7 +19,7 @@ module Api
       # DELETE /comments/1
       def destroy
         if @comment.destroy
-          render json: @post, include:['user','likes','comments','comments.user']
+          render json: @post, include:['user','likes','comments','comments.user','categories']
         else
           render json: @comment.errors
         end
