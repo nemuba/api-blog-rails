@@ -25,7 +25,7 @@ module Api
         if @post.save
           render json: @post, status: :created
         else
-          render json: @post.errors, status: :unprocessable_entity
+          render json: @post.errors.full_messages
         end
       end
     
@@ -34,7 +34,7 @@ module Api
         if @post.update(post_params.merge(user_id: @user.id))
           render json: @post
         else
-          render json: @post.errors, status: :unprocessable_entity
+          render json: @post.errors.full_messages
         end
       end
     

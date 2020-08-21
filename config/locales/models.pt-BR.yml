@@ -1,0 +1,43 @@
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: 'Usuário'
+        other: 'Usuários'
+      post:
+        one: 'Post'
+        other: 'Posts'
+      like:
+        one: 'Like'
+        other: 'Likes'
+      comment:
+        one: 'Comentário'
+        other: 'Comentários'
+      category:
+        one: 'Categoria'
+        other: 'Categorias'
+    attributes:
+      default: &default
+        created_at: 'Criado em'
+        updated_at: 'Atualizado em'
+      user:
+        <<: *default
+        name: 'Nome'
+        username: 'Nome de usuário'
+        email: 'Email'
+        password: 'Senha'
+        password_confirmation: 'Confirmação de senha'
+      post:
+        <<: *default
+        title: 'Titulo'
+        body: 'Descrição'
+        user: 'Autor'
+        likes: 'Curtidas'
+        comments: 'Comentários'
+      comment:
+        <<: *default
+        description: 'Descrição'
+        user: 'Autor'
+      category:
+        <<: *default
+        description: 'Descrição'

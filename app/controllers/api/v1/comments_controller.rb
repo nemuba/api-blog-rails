@@ -12,7 +12,7 @@ module Api
         if @comment.save
           render json: @post, include:['user','likes','comments','comments.user','categories'], status: :created
         else
-          render json: @comment.errors, status: :unprocessable_entity
+          render json: @comment.errors.full_messages
         end
       end
     
@@ -21,7 +21,7 @@ module Api
         if @comment.destroy
           render json: @post, include:['user','likes','comments','comments.user','categories']
         else
-          render json: @comment.errors
+          render json: @comment.errors.full_messages
         end
       end
     
