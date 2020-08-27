@@ -5,6 +5,7 @@ module Api
         @contact = Contact.new(contact_params)
 
         if @contact.save
+          ContactMailer.with(contact: @contact).welcome.deliver_later
           render json: @contact, status: :created
         else
           render json: @contact.errors.full_messages
